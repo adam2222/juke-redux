@@ -1,25 +1,54 @@
-import React from 'react';
+import React, {Component} from 'react';
 import store from '../store';
-import {setLyrics} from '../action-creators/lyrics';
+import Lyrics from '../components/Lyrics';
+import lyricsAction from '../action-creators/lyrics';
+export default class extends Component {
 
+  constructor() {
 
-export default class LyricsContainer extends React.Component{
-	constructor(props){
-		super(props);
-		this.state = store.getState();
-	}
-	componentDidMount() {
-		this.unsubscribe = store.subscribe(
-			function(){
-				this.setState(store.getState());
-			});
-	}
+    super();
 
-	componentWillUnmount() {
-		this.unsubscribe();
-	}
+    this.state = Object.assign({
+      artistQuery: '',
+      songQuery: ''
+    }, store.getState());
 
-	render() {
-		return(<h1>Just a container, more to come!</h1>);
-	}
+    this.handleArtistInput = this.handleArtistInput.bind(this);
+    this.handleSongInput = this.handleSongInput.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  componentDidMount() {
+    this.unsubscribe = store.subscribe(() => {
+      this.setState(store.getState());
+    });
+  }
+
+  componentWillUnmount() {
+    this.unsubscribe();
+  }
+
+  handleArtistInput(artist) {
+    this.setState({ artistQuery: artist });
+  }
+
+  handleSongInput(song) {
+    this.setState({ songQuery: song });
+  }
+
+  handleSubmit() {
+    console.log(this.state)
+  }
+
+  render() {
+    return <Lyrics
+      text={this.state.text}
+      setArtist={this.handleArtistInput}
+      setSong={this.handleSongInput}
+      artistQuery={this.artistQuery}
+      songQuery={this.songQuery}
+      handleSubmit={this.handleSubmit}
+    />
+  }
+
 }
