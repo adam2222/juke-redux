@@ -38,6 +38,7 @@ export default class extends Component {
     this.setState({ songQuery: song });
   }
 
+
 handleSubmit() {
     if (this.state.artistQuery && this.state.songQuery) {
       store.dispatch(fetchLyrics(this.state.artistQuery, this.state.songQuery));
