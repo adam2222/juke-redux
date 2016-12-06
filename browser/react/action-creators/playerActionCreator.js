@@ -15,6 +15,11 @@ import {START_PLAYING, STOP_PLAYING, SET_CURRENT_SONG,SET_LIST,
       currentSongList
     });
 
+    const setProgress = (progress) => ({
+      type: SET_PROGRESS,
+      progress
+    });
+
 
     export const play = () => dispatch => {
       AUDIO.play();
@@ -63,3 +68,5 @@ import {START_PLAYING, STOP_PLAYING, SET_CURRENT_SONG,SET_LIST,
       (dispatch, getState) => {
         dispatch(startSong(...skip(-1, getState()));
     };
+
+

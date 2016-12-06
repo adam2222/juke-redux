@@ -9,7 +9,7 @@ import Albums from '../components/Albums.js';
 import Album from '../components/Album';
 import Sidebar from '../components/Sidebar';
 import Player from '../components/Player';
-import {load,pause, play, startSong, toggle, toggleOne, next, prev} from '../action-creators/playerActionCreator'
+import {load,pause, play, startSong, toggle, toggleOne, next, prev, setProgress} from '../action-creators/playerActionCreator'
 
 import { convertAlbum, convertAlbums, convertSong, skip } from '../utils';
 
@@ -49,6 +49,7 @@ export default class AppContainer extends Component {
       this.next());
     AUDIO.addEventListener('timeupdate', () =>
       this.setProgress(AUDIO.currentTime / AUDIO.duration));
+      
   }
 
   componentWillUnmount() {
@@ -96,7 +97,7 @@ export default class AppContainer extends Component {
   }
 
   setProgress (progress) {
-    this.setState({ progress: progress });
+    store.dispatch(setProgress(progress));
   }
 
   selectAlbum (albumId) {
