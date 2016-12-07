@@ -38,6 +38,7 @@ export default function (state = initialPlayerState, action) {
 
     case SET_PROGRESS:
       newState.progress = action.progress
+      break;
 
     default:
       return state;
