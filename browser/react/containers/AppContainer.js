@@ -9,7 +9,8 @@ import Albums from '../components/Albums.js';
 import Album from '../components/Album';
 import Sidebar from '../components/Sidebar';
 import Player from '../components/Player';
-import {load,pause, play, startSong, toggle, toggleOne, next, prev, setProgress} from '../action-creators/playerActionCreator'
+import {load,pause, play, startSong, toggle, toggleOne, next, prev, setProgress} from '../action-creators/playerActionCreator';
+import store from '../store';
 
 import { convertAlbum, convertAlbums, convertSong, skip } from '../utils';
 
@@ -17,6 +18,7 @@ export default class AppContainer extends Component {
 
   constructor (props) {
     super(props);
+    console.log(store.getState());
     this.state = Object.assign(initialState, store.getState());
 
     this.toggle = this.toggle.bind(this);
@@ -29,6 +31,7 @@ export default class AppContainer extends Component {
     this.selectPlaylist = this.selectPlaylist.bind(this);
     this.loadSongs = this.loadSongs.bind(this);
     this.addSongToPlaylist = this.addSongToPlaylist.bind(this);
+    this.setProgress = this.setProgress.bind(this);
   }
 
   componentDidMount () {
@@ -181,10 +184,10 @@ export default class AppContainer extends Component {
   }
 
   render () {
-
+    console.log("store in app", store.getState());
     const props = Object.assign({}, this.state, {
       toggleOne: this.toggleOne,
-      toggle: this.player.toggle,
+      toggle: this.toggle,
       selectAlbum: this.selectAlbum,
       selectArtist: this.selectArtist,
       addPlaylist: this.addPlaylist,
@@ -207,7 +210,7 @@ export default class AppContainer extends Component {
           currentSong={this.state.player.currentSong}
           currentSongList={this.state.player.currentSongList}
           isPlaying={this.state.player.isPlaying}
-          progress={this.state.progress}
+          progress={this.state.player.progress}
           next={this.next}
           prev={this.prev}
           toggle={this.toggle}
