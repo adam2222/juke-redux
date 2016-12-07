@@ -2,8 +2,6 @@ import React from 'react';
 
 const Player = (props) => {
 
-  console.log("player props", props);
-  debugger;
   const currentSong = props.currentSong;
   const currentSongList = props.currentSongList;
   const isPlaying = props.isPlaying;

@@ -16,7 +16,6 @@ export const initialPlayerState = {
 export default function (state = initialPlayerState, action) {
 
   const newState = Object.assign({}, state);
-  console.log("newState",newState);
 
   switch (action.type) {
 

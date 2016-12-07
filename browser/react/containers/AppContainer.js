@@ -18,7 +18,6 @@ export default class AppContainer extends Component {
 
   constructor (props) {
     super(props);
-    console.log(store.getState());
     this.state = Object.assign(initialState, store.getState());
 
     this.toggle = this.toggle.bind(this);
@@ -52,7 +51,7 @@ export default class AppContainer extends Component {
       this.next());
     AUDIO.addEventListener('timeupdate', () =>
       this.setProgress(AUDIO.currentTime / AUDIO.duration));
-      
+
   }
 
   componentWillUnmount() {
@@ -184,7 +183,6 @@ export default class AppContainer extends Component {
   }
 
   render () {
-    console.log("store in app", store.getState());
     const props = Object.assign({}, this.state, {
       toggleOne: this.toggleOne,
       toggle: this.toggle,

@@ -58,7 +58,7 @@ export const startSong = (song, list) => dispatch => {
 export const toggle = () => (dispatch, getState) => {
   const {
     isPlaying
-  } = getState();
+  } = getState().player;
   if (isPlaying) dispatch(pause());
   else dispatch(play());
 };
